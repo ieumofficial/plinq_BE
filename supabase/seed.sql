@@ -28,43 +28,57 @@
 
 INSERT INTO auth.users (
     id, instance_id, aud, role, email, encrypted_password,
-    email_confirmed_at, raw_user_meta_data, created_at, updated_at,
+    email_confirmed_at, confirmed_at,
+    raw_app_meta_data, raw_user_meta_data,
+    created_at, updated_at,
     confirmation_token, recovery_token
 ) VALUES
     ('a1111111-1111-1111-1111-111111111111', '00000000-0000-0000-0000-000000000000',
      'authenticated', 'authenticated', 'minjae@plow.dev',
      crypt('password123', gen_salt('bf')),
-     now(), '{"first_name":"민재","last_name":"김","nickname":"MJ"}'::jsonb,
+     now(), now(),
+     '{"provider":"email","providers":["email"]}'::jsonb,
+     '{"first_name":"민재","last_name":"김","nickname":"MJ","email_verified":true}'::jsonb,
      now(), now(), '', ''),
 
     ('a2222222-2222-2222-2222-222222222222', '00000000-0000-0000-0000-000000000000',
      'authenticated', 'authenticated', 'cindy@plow.dev',
      crypt('password123', gen_salt('bf')),
-     now(), '{"first_name":"신디","last_name":"박","nickname":"Cindy"}'::jsonb,
+     now(), now(),
+     '{"provider":"email","providers":["email"]}'::jsonb,
+     '{"first_name":"신디","last_name":"박","nickname":"Cindy","email_verified":true}'::jsonb,
      now(), now(), '', ''),
 
     ('a3333333-3333-3333-3333-333333333333', '00000000-0000-0000-0000-000000000000',
      'authenticated', 'authenticated', 'yeonoh@plow.dev',
      crypt('password123', gen_salt('bf')),
-     now(), '{"first_name":"연오","last_name":"고","nickname":"YO"}'::jsonb,
+     now(), now(),
+     '{"provider":"email","providers":["email"]}'::jsonb,
+     '{"first_name":"연오","last_name":"고","nickname":"YO","email_verified":true}'::jsonb,
      now(), now(), '', ''),
 
     ('a4444444-4444-4444-4444-444444444444', '00000000-0000-0000-0000-000000000000',
      'authenticated', 'authenticated', 'hyunsoo@plow.dev',
      crypt('password123', gen_salt('bf')),
-     now(), '{"first_name":"현수","last_name":"박","nickname":"HS"}'::jsonb,
+     now(), now(),
+     '{"provider":"email","providers":["email"]}'::jsonb,
+     '{"first_name":"현수","last_name":"박","nickname":"HS","email_verified":true}'::jsonb,
      now(), now(), '', ''),
 
     ('a5555555-5555-5555-5555-555555555555', '00000000-0000-0000-0000-000000000000',
      'authenticated', 'authenticated', 'seungyeon@plow.dev',
      crypt('password123', gen_salt('bf')),
-     now(), '{"first_name":"승연","last_name":"진","nickname":"SY"}'::jsonb,
+     now(), now(),
+     '{"provider":"email","providers":["email"]}'::jsonb,
+     '{"first_name":"승연","last_name":"진","nickname":"SY","email_verified":true}'::jsonb,
      now(), now(), '', ''),
 
     ('a6666666-6666-6666-6666-666666666666', '00000000-0000-0000-0000-000000000000',
      'authenticated', 'authenticated', 'miso@plow.dev',
      crypt('password123', gen_salt('bf')),
-     now(), '{"first_name":"미소","last_name":"김","nickname":"Miso"}'::jsonb,
+     now(), now(),
+     '{"provider":"email","providers":["email"]}'::jsonb,
+     '{"first_name":"미소","last_name":"김","nickname":"Miso","email_verified":true}'::jsonb,
      now(), now(), '', '');
 
 -- auth.identities (Supabase Auth가 요구하는 identity 레코드)
@@ -72,17 +86,17 @@ INSERT INTO auth.identities (
     id, user_id, provider_id, provider, identity_data, last_sign_in_at, created_at, updated_at
 ) VALUES
     (gen_random_uuid(), 'a1111111-1111-1111-1111-111111111111', 'a1111111-1111-1111-1111-111111111111', 'email',
-     '{"sub":"a1111111-1111-1111-1111-111111111111","email":"minjae@plow.dev"}'::jsonb, now(), now(), now()),
+     '{"sub":"a1111111-1111-1111-1111-111111111111","email":"minjae@plow.dev","email_verified":true}'::jsonb, now(), now(), now()),
     (gen_random_uuid(), 'a2222222-2222-2222-2222-222222222222', 'a2222222-2222-2222-2222-222222222222', 'email',
-     '{"sub":"a2222222-2222-2222-2222-222222222222","email":"cindy@plow.dev"}'::jsonb, now(), now(), now()),
+     '{"sub":"a2222222-2222-2222-2222-222222222222","email":"cindy@plow.dev","email_verified":true}'::jsonb, now(), now(), now()),
     (gen_random_uuid(), 'a3333333-3333-3333-3333-333333333333', 'a3333333-3333-3333-3333-333333333333', 'email',
-     '{"sub":"a3333333-3333-3333-3333-333333333333","email":"yeonoh@plow.dev"}'::jsonb, now(), now(), now()),
+     '{"sub":"a3333333-3333-3333-3333-333333333333","email":"yeonoh@plow.dev","email_verified":true}'::jsonb, now(), now(), now()),
     (gen_random_uuid(), 'a4444444-4444-4444-4444-444444444444', 'a4444444-4444-4444-4444-444444444444', 'email',
-     '{"sub":"a4444444-4444-4444-4444-444444444444","email":"hyunsoo@plow.dev"}'::jsonb, now(), now(), now()),
+     '{"sub":"a4444444-4444-4444-4444-444444444444","email":"hyunsoo@plow.dev","email_verified":true}'::jsonb, now(), now(), now()),
     (gen_random_uuid(), 'a5555555-5555-5555-5555-555555555555', 'a5555555-5555-5555-5555-555555555555', 'email',
-     '{"sub":"a5555555-5555-5555-5555-555555555555","email":"seungyeon@plow.dev"}'::jsonb, now(), now(), now()),
+     '{"sub":"a5555555-5555-5555-5555-555555555555","email":"seungyeon@plow.dev","email_verified":true}'::jsonb, now(), now(), now()),
     (gen_random_uuid(), 'a6666666-6666-6666-6666-666666666666', 'a6666666-6666-6666-6666-666666666666', 'email',
-     '{"sub":"a6666666-6666-6666-6666-666666666666","email":"miso@plow.dev"}'::jsonb, now(), now(), now());
+     '{"sub":"a6666666-6666-6666-6666-666666666666","email":"miso@plow.dev","email_verified":true}'::jsonb, now(), now(), now());
 
 -- public.users 추가 필드 업데이트 (트리거가 기본값만 넣으므로)
 UPDATE public.users SET job_title = 'CEO'                  WHERE id = 'a1111111-1111-1111-1111-111111111111';
