@@ -236,7 +236,7 @@ INSERT INTO public.tasks (id, project_id, title, description, status, priority, 
     ('f1000004-0000-0000-0000-000000000001', 'd1111111-1111-1111-1111-111111111111',
      '칸반 보드 구현',
      '드래그 앤 드롭, 컬럼 관리, Task 카드 CRUD. react-beautiful-dnd 또는 dnd-kit 사용.',
-     'in_progress', 'urgent', '2026-04-01', '2026-04-15',
+     'in_progress', 'highest', '2026-04-01', '2026-04-15',
      'e1000002-0000-0000-0000-000000000001', 'a2222222-2222-2222-2222-222222222222');
 
 -- T5: 캘린더 뷰 (Review)
@@ -279,7 +279,7 @@ INSERT INTO public.tasks (id, project_id, title, description, status, priority, 
     ('f2000001-0000-0000-0000-000000000002', 'd2222222-2222-2222-2222-222222222222',
      'FastAPI 프로젝트 초기 세팅',
      'pyproject.toml, asyncpg 연결 풀, 환경변수, 라우터 구조, 헬스체크.',
-     'done', 'urgent', '2026-03-18', '2026-03-22',
+     'done', 'highest', '2026-03-18', '2026-03-22',
      'e1000004-0000-0000-0000-000000000002', 'a3333333-3333-3333-3333-333333333333');
 
 -- T10: 회의 처리 파이프라인 (In Progress)
@@ -287,14 +287,14 @@ INSERT INTO public.tasks (id, project_id, title, description, status, priority, 
     ('f2000002-0000-0000-0000-000000000002', 'd2222222-2222-2222-2222-222222222222',
      '회의 처리 파이프라인 구현',
      '녹음 → STT(Whisper) → 화자분리 → 요약(Claude) → Decision/Action 추출.',
-     'in_progress', 'urgent', '2026-04-01', '2026-04-20',
+     'in_progress', 'highest', '2026-04-01', '2026-04-20',
      'e1000002-0000-0000-0000-000000000002', 'a3333333-3333-3333-3333-333333333333');
 
     -- T10 subtasks
     INSERT INTO public.tasks (id, project_id, parent_task_id, title, status, priority, due_date, kanban_column_id, created_by) VALUES
         ('f2000002-0001-0000-0000-000000000002', 'd2222222-2222-2222-2222-222222222222',
          'f2000002-0000-0000-0000-000000000002',
-         'STT 연동 (Whisper API)', 'done', 'urgent', '2026-04-08',
+         'STT 연동 (Whisper API)', 'done', 'highest', '2026-04-08',
          'e1000004-0000-0000-0000-000000000002', 'a6666666-6666-6666-6666-666666666666'),
 
         ('f2000002-0002-0000-0000-000000000002', 'd2222222-2222-2222-2222-222222222222',
@@ -340,7 +340,7 @@ INSERT INTO public.tasks (id, project_id, title, description, status, priority, 
 -- 김민준의 개인 task
 INSERT INTO public.tasks (id, title, description, status, priority, due_date, created_by) VALUES
     ('f0000001-0000-0000-0000-000000000000', '투자자 미팅 준비',
-     'Series A 투자 미팅 발표자료 정리', 'in_progress', 'urgent', '2026-04-18',
+     'Series A 투자 미팅 발표자료 정리', 'in_progress', 'highest', '2026-04-18',
      'a1111111-1111-1111-1111-111111111111');
 
 -- 이서연의 개인 task
